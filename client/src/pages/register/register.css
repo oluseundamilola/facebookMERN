@@ -63,12 +63,14 @@
 .loginRegister{
     height: 50px;
     align-self: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
     width: 60%;
     border-radius: 10px;
-    border: none;
-    outline: none;
     color: white;
-   background-color: #42b72a;
+    background-color: #42b72a;
     font-size: 20px;
     font-weight: 500;
     cursor: pointer;

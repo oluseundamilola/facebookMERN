@@ -1,7 +1,7 @@
  import { useRef } from "react"
 import { publicRequest } from "../../requestMethod"
 import "./register.css"
-import { useNavigate  } from "react-router-dom"
+import { Link, useNavigate  } from "react-router-dom"
  
  const Register = () => {
     const username = useRef()
@@ -47,7 +47,7 @@ import { useNavigate  } from "react-router-dom"
                     <input placeholder="Password" type="password" minLength="6"  required ref={password}  className="loginInput" />
                     <input placeholder="Confirm Password" type="password"  required ref={passwordAgain}  className="loginInput" />
                     <button className="loginButton" type="submit">Sign Up</button>
-                    <button className="loginRegister">Login into Account</button>
+                    <Link className="loginRegister" to="/login">Log In?</Link>
                 </form>
             </div>
         </div>

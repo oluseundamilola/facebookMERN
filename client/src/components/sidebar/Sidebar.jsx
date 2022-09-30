@@ -2,8 +2,29 @@ import { Bookmark, Event, Group, HelpOutline, Message, PlayCircleFilledOutlined,
 import "./sidebar.css"
 import { Users } from "../../dummyData"
 import CloseFriend from "../closeFriend/CloseFriend"
+import { publicRequest } from "../../requestMethod";
+import { useEffect, useState } from "react";
 
 const Sidebar = () => {
+  const [allUsers, setAllUsers] = useState([])
+
+  useEffect( () => {
+    const getAllUsers = async () => {
+      try{
+        const allMyUsers = await publicRequest.get("users/all")
+        setAllUsers(allMyUsers.data)
+        
+      }catch(err){
+        console.log(err)
+      }
+    }
+    getAllUsers()
+
+  }, [] )
+
+  console.log(allUsers)
+
+
   return (
     <div className="sidebar">
       <div className="sidebarWrapper">
@@ -49,7 +70,7 @@ const Sidebar = () => {
         <hr className="sidebarHr" />
 
         <ul className="sidebarFriendList">
-          {Users.map(u=>(
+          {allUsers.map(u=>(
             <CloseFriend key={u.id} user={u}/>
           ))}
         </ul>

@@ -3,6 +3,7 @@ import "./login.css"
 import { loginCall } from "../../apiCalls"
 import { AuthContext } from "../../context/AuthContext"
 import {CircularProgress} from "@material-ui/core"
+import { Link } from "react-router-dom"
  
  const Login = () => {
     const email = useRef()
@@ -14,10 +15,12 @@ import {CircularProgress} from "@material-ui/core"
 
     const handleClick = (e) => {
         e.preventDefault()
-        loginCall({email: email.current.value  ,password: password.current.value  }, dispatch)
+        loginCall({email: email.current.value,password: password.current.value  }, dispatch)
     }
     console.log(user)
    return (
+    <div className="page">
+    <div className="note">USERNAME: test@gmail.com | PASSWORD: 1234</div>
      <div className="login">
         <div className="loginWrapper">
             <div className="loginLeft">
@@ -30,14 +33,15 @@ import {CircularProgress} from "@material-ui/core"
             <div className="loginRight">
                 <form className="loginBox" onSubmit={handleClick}>
                     <input placeholder="Email" type="email" required className="loginInput" ref={email} />
-                    <input placeholder="Password" type="password" minLength="6" required className="loginInput" ref={password} />
+                    <input placeholder="Password" type="password" minLength="3" required className="loginInput" ref={password} />
                     <button className="loginButton" type="submit" disabled={isFetching}>{isFetching ? <CircularProgress color="white" size="15px"/> : "Login In"}</button>
                     <span className="loginForgot">Forgot Password</span>
-                    <button className="loginRegister">{isFetching ? <CircularProgress color="white" size="15px"/> : "Create Account"}</button>
+                    <Link className="loginRegister" to="/register">Create an Account</Link>
                 </form>
             </div>
         </div>
      </div>
+    </div>
    )
  }
  
